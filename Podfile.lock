@@ -1,16 +1,28 @@
 PODS:
+  - BaseNetworkKit (1.0.4)
+  - Nimble (8.0.1)
+  - Quick (2.0.0)
   - SwiftLint (0.31.0)
 
 DEPENDENCIES:
+  - BaseNetworkKit (~> 1.0)
+  - Nimble (~> 8.0)
+  - Quick (~> 2.0)
   - SwiftLint (~> 0.31)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BaseNetworkKit
+    - Nimble
+    - Quick
     - SwiftLint
 
 SPEC CHECKSUMS:
+  BaseNetworkKit: f0d0795474c0c6ee4357e4d7f0e88ff69068a0a8
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Quick: ce1276c7c27ba2da3cb2fd0cde053c3648b3b22d
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: ce49871401c14f98a7a089ed3d36a867c74427f4
+PODFILE CHECKSUM: bf65bbc73d87ccdb6a0cdea087f8a14cf2f7586c
 
 COCOAPODS: 1.6.1
