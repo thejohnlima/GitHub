@@ -5,11 +5,16 @@ target 'Github' do
   inhibit_all_warnings!
 
   # Pods for Github
+  pod 'BaseNetworkKit', '~> 1.0'
   pod 'SwiftLint', '~> 0.31'
 
   target 'GithubTests' do
     inherit! :search_paths
+    
     # Pods for testing
+    pod 'Nimble', '~> 8.0'
+    pod 'Quick', '~> 2.0'
+
   end
 
 end
