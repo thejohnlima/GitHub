@@ -42,3 +42,27 @@ extension HomeModel.Repository {
     }
   }
 }
+
+extension HomeModel: Equatable {
+  static func == (lhs: HomeModel, rhs: HomeModel) -> Bool {
+    return lhs.repositories == rhs.repositories
+  }
+}
+
+extension HomeModel.Repository: Equatable {
+  static func == (lhs: HomeModel.Repository, rhs: HomeModel.Repository) -> Bool {
+    return lhs.name == rhs.name
+      && lhs.name == rhs.name
+      && lhs.description == rhs.description
+      && lhs.stars == rhs.stars
+      && lhs.forks == rhs.forks
+      && lhs.author == rhs.author
+  }
+}
+
+extension HomeModel.Repository.Author: Equatable {
+  static func == (lhs: HomeModel.Repository.Author, rhs: HomeModel.Repository.Author) -> Bool {
+    return lhs.name == rhs.name
+      && lhs.avatar == rhs.avatar
+  }
+}
