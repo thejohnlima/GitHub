@@ -6,6 +6,7 @@ target 'Github' do
 
   # Pods for Github
   pod 'BaseNetworkKit', '~> 1.0'
+  pod 'ObservableKit', '~> 1.0'
   pod 'SwiftLint', '~> 0.31'
 
   target 'GithubTests' do
