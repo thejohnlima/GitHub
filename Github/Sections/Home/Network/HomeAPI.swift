@@ -24,7 +24,7 @@ extension HomeAPI: NKFlowTarget {
   var path: String {
     switch self {
     case .fetch:
-      return "repositories"
+      return "search/repositories"
     }
   }
 

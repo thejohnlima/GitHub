@@ -11,7 +11,7 @@ import Foundation
 @testable import Github
 
 class HomeServiceMockError: HomeService {
-  override func fetchData(completion: @escaping NKCommon.Completion<HomeModel>) {
+  override func fetchData(with page: Int, completion: @escaping NKCommon.Completion<HomeModel>) {
     completion(nil, ErrorManager.default)
   }
 }

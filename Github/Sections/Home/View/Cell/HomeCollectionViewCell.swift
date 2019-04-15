@@ -9,7 +9,7 @@
 import SwiftIconFont
 import UIKit
 
-class HomeCollectionViewCell: UICollectionViewCell, ReusableView, NIBLoadableView {
+class HomeCollectionViewCell: UICollectionViewCell {
 
   // MARK: - Constants
   private let iconFontSize: CGFloat = 18

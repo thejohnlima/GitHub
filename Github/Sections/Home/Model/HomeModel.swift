@@ -9,35 +9,37 @@
 import BaseNetworkKit
 import Foundation
 
-struct Repository: NKCodable {
-  let id: Int
-  let name: String
-  let description: String
-  let stars: Int
-  let forks: Int
-  let author: Author
-
-  private enum CodingKeys: String, CodingKey {
-    case id, name, description, forks
-    case stars = "stargazers_count"
-    case author = "owner"
-  }
-}
-
-extension Repository {
-  struct Author: NKCodable {
+struct HomeModel: NKCodable {
+  var items: [Repository]
+  
+  struct Repository: NKCodable {
+    let id: Int
     let name: String
-    let avatar: String
-
+    let description: String
+    let stars: Int
+    let forks: Int
+    let author: Author
+    
+    struct Author: NKCodable {
+      let name: String
+      let avatar: String
+      
+      private enum CodingKeys: String, CodingKey {
+        case name = "login"
+        case avatar = "avatar_url"
+      }
+    }
+    
     private enum CodingKeys: String, CodingKey {
-      case name = "login"
-      case avatar = "avatar_url"
+      case id, name, description, forks
+      case stars = "stargazers_count"
+      case author = "owner"
     }
   }
 }
 
-extension Repository: Equatable {
-  static func == (lhs: Repository, rhs: Repository) -> Bool {
+extension HomeModel.Repository: Equatable {
+  static func == (lhs: HomeModel.Repository, rhs: HomeModel.Repository) -> Bool {
     return lhs.id == rhs.id
       && lhs.name == rhs.name
       && lhs.description == rhs.description
@@ -47,17 +49,17 @@ extension Repository: Equatable {
   }
 }
 
-extension Repository.Author: Equatable {
-  static func == (lhs: Repository.Author, rhs: Repository.Author) -> Bool {
+extension HomeModel.Repository.Author: Equatable {
+  static func == (lhs: HomeModel.Repository.Author, rhs: HomeModel.Repository.Author) -> Bool {
     return lhs.name == rhs.name
       && lhs.avatar == rhs.avatar
   }
 }
 
 extension Collection {
-  func noDuplicates() -> [Repository] {
-    let models = (self as? [Repository] ?? [])
-    var result = [Repository]()
+  func noDuplicates() -> [HomeModel.Repository] {
+    let models = (self as? [HomeModel.Repository] ?? [])
+    var result = [HomeModel.Repository]()
     for model in models {
       let duplicates = result.first { $0.id == model.id }
       if duplicates == nil {

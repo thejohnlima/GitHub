@@ -15,35 +15,39 @@ class HomeViewModel {
   let alertActionImageKey = "image"
   let alertActionTitleTextColorKey = "titleTextColor"
   let timeIntervalToDismissAlert: TimeInterval = 3
-  let initialPage = 1
+  let initialPage = 0
   let pageIncrement = 1
 
   // MARK: - Properties
-  let observable: OKObservable<OKState<[Repository]>> = OKObservable(.loading)
+  let observable: OKObservable<OKState<HomeModel>> = OKObservable(.loading)
   var service = HomeService()
-  var models: [Repository] = []
-  var currentItem: Repository?
-  var completionFetch: ((OKState<[Repository]>) -> Void)?
-  var pageIndex = 1
+  var model = HomeModel(items: [])
+  var currentItem: HomeModel.Repository?
+  var completionFetch: ((OKState<HomeModel>) -> Void)?
+  var pageIndex = 0
 
   // MARK: - Public Methods
   func fetchData() {
     if pageIndex == initialPage {
-      models = []
+      clearData()
     }
     observable.value = .loading
     service.fetchData(with: pageIndex) { result, error in
       guard let result = result else {
-        if !self.models.isEmpty {
-          self.observable.value = .load(data: self.models)
+        if !self.model.items.isEmpty {
+          self.observable.value = .load(data: self.model)
         } else {
           self.observable.value = .errored(error: error ?? ErrorManager.default)
         }
         return
       }
-      self.models.append(contentsOf: result)
+      self.model.items.append(contentsOf: result.items)
       self.pageIndex += self.pageIncrement
       self.observable.value = .load(data: result)
     }
+  }
+  
+  func clearData() {
+    model = HomeModel(items: [])
   }
 }

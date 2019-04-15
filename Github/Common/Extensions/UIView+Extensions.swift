@@ -8,22 +8,15 @@
 
 import UIKit
 
-protocol ReusableView: AnyObject {
-  static var defaultReuseIdentifier: String { get }
-}
+private let loadNibError = "Could not load view from nib"
 
-protocol NIBLoadableView: AnyObject {
-  static var nibName: String { get }
-}
-
-extension ReusableView where Self: UIView {
-  static var defaultReuseIdentifier: String {
-    return String(describing: self)
-  }
-}
-
-extension NIBLoadableView where Self: UIView {
-  static var nibName: String {
-    return String(describing: self)
+extension UIView {
+  static var identifier: String { return String(describing: self) }
+  
+  static func fromNib<T: UIView>() -> T {
+    guard let result = Bundle.main.loadNibNamed(T.identifier, owner: nil, options: nil)?.first as? T else {
+      fatalError("\(loadNibError): \(T.identifier)")
+    }
+    return result
   }
 }
