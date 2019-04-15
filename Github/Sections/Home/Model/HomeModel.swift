@@ -9,29 +9,22 @@
 import BaseNetworkKit
 import Foundation
 
-struct HomeModel: NKCodable {
-  let repositories: [Repository]
-
-  struct Repository: NKCodable {
-    let name: String
-    let description: String
-    let stars: Int
-    let forks: Int
-    let author: Author
-
-    private enum CodingKeys: String, CodingKey {
-      case name, description, forks
-      case stars = "stargazers_count"
-      case author = "owner"
-    }
-  }
+struct Repository: NKCodable {
+  let id: Int
+  let name: String
+  let description: String
+  let stars: Int
+  let forks: Int
+  let author: Author
 
   private enum CodingKeys: String, CodingKey {
-    case repositories = "items"
+    case id, name, description, forks
+    case stars = "stargazers_count"
+    case author = "owner"
   }
 }
 
-extension HomeModel.Repository {
+extension Repository {
   struct Author: NKCodable {
     let name: String
     let avatar: String
@@ -43,15 +36,9 @@ extension HomeModel.Repository {
   }
 }
 
-extension HomeModel: Equatable {
-  static func == (lhs: HomeModel, rhs: HomeModel) -> Bool {
-    return lhs.repositories == rhs.repositories
-  }
-}
-
-extension HomeModel.Repository: Equatable {
-  static func == (lhs: HomeModel.Repository, rhs: HomeModel.Repository) -> Bool {
-    return lhs.name == rhs.name
+extension Repository: Equatable {
+  static func == (lhs: Repository, rhs: Repository) -> Bool {
+    return lhs.id == rhs.id
       && lhs.name == rhs.name
       && lhs.description == rhs.description
       && lhs.stars == rhs.stars
@@ -60,9 +47,23 @@ extension HomeModel.Repository: Equatable {
   }
 }
 
-extension HomeModel.Repository.Author: Equatable {
-  static func == (lhs: HomeModel.Repository.Author, rhs: HomeModel.Repository.Author) -> Bool {
+extension Repository.Author: Equatable {
+  static func == (lhs: Repository.Author, rhs: Repository.Author) -> Bool {
     return lhs.name == rhs.name
       && lhs.avatar == rhs.avatar
+  }
+}
+
+extension Collection {
+  func noDuplicates() -> [Repository] {
+    let models = (self as? [Repository] ?? [])
+    var result = [Repository]()
+    for model in models {
+      let duplicates = result.first { $0.id == model.id }
+      if duplicates == nil {
+        result.append(model)
+      }
+    }
+    return result
   }
 }

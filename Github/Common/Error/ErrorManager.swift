@@ -10,12 +10,15 @@ import BaseNetworkKit
 import Foundation
 
 enum ErrorManager: Error, CustomStringConvertible {
+  case error
   case connection
   case initClass
   case `default`
 
   var description: String {
     switch self {
+    case .error:
+      return "Erro"
     case .connection:
       return "Erro de rede"
     case .initClass:
