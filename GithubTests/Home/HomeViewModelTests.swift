@@ -12,37 +12,38 @@ import Quick
 
 class HomeViewModelTests: QuickSpec {
   override func spec() {
-
+    
     // swiftlint:disable closure_body_length
     describe("home view model spec") {
-
+      
       var viewModel: HomeViewModel?
-
+      
       beforeSuite {
         viewModel = HomeViewModel()
       }
-
+      
       it("should be able to fetch data with success") {
         let expected = HomeMockSuccess.getModel()
-
+        
         viewModel?.observable.didChange = { status in
           switch status {
           case .load(data: let model):
-            expect(model) == expected
+            expect(model.items) == expected?.items
           case .errored:
             fail("⚠️ This test should finish with success")
           default:
             break
           }
         }
-
+        
+        viewModel?.clearData()
         viewModel?.service = HomeServiceMockSuccess()
         viewModel?.fetchData()
       }
-
+      
       it("should be able to fetch data with fail") {
         let expected = ErrorManager.default
-
+        
         viewModel?.observable.didChange = { status in
           switch status {
           case .load:
@@ -53,7 +54,8 @@ class HomeViewModelTests: QuickSpec {
             break
           }
         }
-
+        
+        viewModel?.clearData()
         viewModel?.service = HomeServiceMockError()
         viewModel?.fetchData()
       }

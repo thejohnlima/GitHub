@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Github" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicatorView" destination="ef0-3l-h7Q" id="tge-E4-Koh"/>
+                <outlet property="backView" destination="kM1-ts-mNR" id="c2U-K6-qaS"/>
+                <outlet property="collectionView" destination="Z7O-XI-xTK" id="TWU-LY-8MG"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Hva-bZ-KJ2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Z7O-XI-xTK">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ryL-HV-L5N">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="YiF-RI-9BI"/>
+                        <outlet property="delegate" destination="-1" id="ZLi-Iy-Lvr"/>
+                        <outlet property="prefetchDataSource" destination="-1" id="56Q-fa-B4z"/>
+                    </connections>
+                </collectionView>
+                <view hidden="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kM1-ts-mNR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ef0-3l-h7Q" userLabel="ActivityIndicatorView">
+                    <rect key="frame" x="169" y="288.66666666666669" width="37" height="37"/>
+                    <color key="color" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="0.96985035210000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="kM1-ts-mNR" secondAttribute="trailing" id="7pZ-O3-9iH"/>
+                <constraint firstAttribute="top" secondItem="Z7O-XI-xTK" secondAttribute="top" id="8II-UG-K6F"/>
+                <constraint firstItem="kM1-ts-mNR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="At2-kX-N8r"/>
+                <constraint firstAttribute="trailing" secondItem="Z7O-XI-xTK" secondAttribute="trailing" id="B2y-nk-lNb"/>
+                <constraint firstItem="ef0-3l-h7Q" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" priority="250" constant="-104" id="LuA-iV-Cau"/>
+                <constraint firstAttribute="bottom" secondItem="kM1-ts-mNR" secondAttribute="bottom" id="Nk0-Bk-U1O"/>
+                <constraint firstItem="ef0-3l-h7Q" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Rgk-Iz-Sas"/>
+                <constraint firstItem="kM1-ts-mNR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fCc-vb-ii1"/>
+                <constraint firstItem="Z7O-XI-xTK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jWz-BO-NJT"/>
+                <constraint firstAttribute="bottom" secondItem="Z7O-XI-xTK" secondAttribute="bottom" id="zoU-qr-kWP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.600000000000001" y="39.90147783251232"/>
+        </view>
+    </objects>
+</document>

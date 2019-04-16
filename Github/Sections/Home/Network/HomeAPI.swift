@@ -10,7 +10,7 @@ import BaseNetworkKit
 import Foundation
 
 enum HomeAPI {
-  case fetch
+  case fetch(_ page: Int)
 }
 
 extension HomeAPI: NKFlowTarget {
@@ -24,7 +24,7 @@ extension HomeAPI: NKFlowTarget {
   var path: String {
     switch self {
     case .fetch:
-      return "repositories"
+      return "search/repositories"
     }
   }
 
@@ -37,8 +37,8 @@ extension HomeAPI: NKFlowTarget {
 
   var task: NKTask {
     switch self {
-    case .fetch:
-      let params = ["q": "language:swift", "sort": "stars"]
+    case .fetch(page: let number):
+      let params: NKCommon.JSON = ["q": "language:swift", "sort": "stars", "page": number]
       return .requestParameters(params, encoding: .queryString)
     }
   }

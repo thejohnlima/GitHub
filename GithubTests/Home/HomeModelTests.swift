@@ -21,14 +21,14 @@ class HomeModelTests: QuickSpec {
       }
 
       it("should be able to parse model data with success") {
-        expect(model?.repositories.count) > 0
-        expect(model?.repositories.first?.name) == "awesome-ios"
-        expect(model?.repositories.first?.description)
+        expect(model?.items.count) > 0
+        expect(model?.items.first?.name) == "awesome-ios"
+        expect(model?.items.first?.description)
           == "A curated list of awesome iOS ecosystem, including Objective-C and Swift Projects "
-        expect(model?.repositories.first?.stars) == 31_041
-        expect(model?.repositories.first?.forks) == 5_195
-        expect(model?.repositories.first?.author.name) == "vsouza"
-        expect(model?.repositories.first?.author.avatar) == "https://avatars2.githubusercontent.com/u/484656?v=4"
+        expect(model?.items.first?.stars) == 31_041
+        expect(model?.items.first?.forks) == 5_195
+        expect(model?.items.first?.author.name) == "vsouza"
+        expect(model?.items.first?.author.avatar) == "https://avatars2.githubusercontent.com/u/484656?v=4"
       }
     }
   }

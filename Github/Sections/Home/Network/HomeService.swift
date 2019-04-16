@@ -10,8 +10,8 @@ import BaseNetworkKit
 import Foundation
 
 class HomeService: NKBaseService<HomeAPI> {
-  func fetchData(completion: @escaping NKCommon.Completion<HomeModel>) {
-    fetch(.fetch, dataType: HomeModel.self) { model, _, error in
+  func fetchData(with page: Int, completion: @escaping NKCommon.Completion<HomeModel>) {
+    fetch(.fetch(page), dataType: HomeModel.self) { model, _, error in
       completion(model, error)
     }
   }

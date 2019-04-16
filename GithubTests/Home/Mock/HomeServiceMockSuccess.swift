@@ -11,7 +11,7 @@ import Foundation
 @testable import Github
 
 class HomeServiceMockSuccess: HomeService {
-  override func fetchData(completion: @escaping NKCommon.Completion<HomeModel>) {
+  override func fetchData(with page: Int, completion: @escaping NKCommon.Completion<HomeModel>) {
     let data = Data(file: .github(.json), target: HomeServiceMockSuccess.self)
     let model = HomeModel(data)
     completion(model, nil)
