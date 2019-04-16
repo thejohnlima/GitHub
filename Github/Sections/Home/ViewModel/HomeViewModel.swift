@@ -15,35 +15,51 @@ class HomeViewModel {
   let alertActionImageKey = "image"
   let alertActionTitleTextColorKey = "titleTextColor"
   let timeIntervalToDismissAlert: TimeInterval = 3
-  let initialPage = 0
+  let initialPage = 1
   let pageIncrement = 1
 
   // MARK: - Properties
   let observable: OKObservable<OKState<HomeModel>> = OKObservable(.loading)
   var service = HomeService()
   var model = HomeModel(items: [])
-  var currentItem: HomeModel.Repository?
   var completionFetch: ((OKState<HomeModel>) -> Void)?
-  var pageIndex = 0
+  var currentPage = 1
+
+  private var isFetchInProgress = false
+
+  var currentCount: Int {
+    return model.items.count
+  }
 
   // MARK: - Public Methods
+  func repository(at index: Int) -> HomeModel.Repository {
+    return model.items[index]
+  }
+
   func fetchData() {
-    if pageIndex == initialPage {
+    guard !isFetchInProgress else { return }
+
+    isFetchInProgress = true
+
+    if currentPage == initialPage {
       clearData()
     }
+
     observable.value = .loading
-    service.fetchData(with: pageIndex) { result, error in
-      guard let result = result else {
-        if !self.model.items.isEmpty {
-          self.observable.value = .load(data: self.model)
-        } else {
+
+    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
+      self.service.fetchData(with: self.currentPage) { result, error in
+        self.isFetchInProgress = false
+
+        guard let result = result else {
           self.observable.value = .errored(error: error ?? ErrorManager.default)
+          return
         }
-        return
+
+        self.currentPage += self.pageIncrement
+        self.model.items.append(contentsOf: result.items)
+        self.observable.value = .load(data: result)
       }
-      self.model.items.append(contentsOf: result.items)
-      self.pageIndex += self.pageIncrement
-      self.observable.value = .load(data: result)
     }
   }
   

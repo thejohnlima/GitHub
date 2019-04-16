@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
   // MARK: - Properties
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+  @IBOutlet weak var backView: UIView!
   
   let homeViewModel: HomeViewModel
   var alertController: UIAlertController?
@@ -37,7 +38,12 @@ class HomeViewController: UIViewController {
   required init?(coder aDecoder: NSCoder) {
     fatalError(ErrorManager.initClass.description)
   }
-  
+
+  // MARK: - Public Methods
+  func isLoadingCell(for indexPath: IndexPath) -> Bool {
+    return indexPath.item >= homeViewModel.currentCount - 1 
+  }
+
   // MARK: - Private Methods
   private func initialize() {
     updateUI()
@@ -63,14 +69,14 @@ class HomeViewController: UIViewController {
         switch state {
         case .loading:
           if self?.pullRefresh.isRefreshing == false {
-            self?.activityIndicatorView.startAnimating()
+            self?.startActivityIndicator()
           }
         case .load:
           self?.didLoadData()
         case .errored(error: let error):
           self?.present(error: error)
         default:
-          self?.activityIndicatorView.stopAnimating()
+          self?.stopActivityIndicator()
           self?.pullRefresh.endRefreshing()
         }
         self?.homeViewModel.completionFetch?(state)
@@ -79,13 +85,13 @@ class HomeViewController: UIViewController {
   }
   
   private func didLoadData() {
-    activityIndicatorView.stopAnimating()
+    stopActivityIndicator()
     pullRefresh.endRefreshing()
     collectionView.reloadData()
   }
   
   private func present(error: Error) {
-    activityIndicatorView.stopAnimating()
+    stopActivityIndicator()
     pullRefresh.endRefreshing()
     if alertController == nil {
       alertController = AlertManager.presentAlertWarning(target: self)
@@ -98,7 +104,17 @@ class HomeViewController: UIViewController {
       )
     }
   }
-  
+
+  private func startActivityIndicator() {
+    activityIndicatorView.startAnimating()
+    backView.isHidden = false
+  }
+
+  private func stopActivityIndicator() {
+    activityIndicatorView.stopAnimating()
+    backView.isHidden = true
+  }
+
   private func createPullRefresh() {
     pullRefresh.tintColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     pullRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -107,7 +123,7 @@ class HomeViewController: UIViewController {
   
   @objc
   private func refresh() {
-    homeViewModel.pageIndex = homeViewModel.initialPage
+    homeViewModel.currentPage = homeViewModel.initialPage
     homeViewModel.clearData()
     collectionView.reloadData()
     homeViewModel.fetchData()

@@ -15,9 +15,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
   private let iconFontSize: CGFloat = 18
   private let forksFontSize: CGFloat = 15
   private let starFontSize: CGFloat = 15
-  private let starIcon = String.fontAwesomeIcon(UIFont.FontIcon.FontAwesome.star) ?? String()
-  private let forksRepoIcon = String.fontIonIcon(UIFont.FontIcon.FontIon.forkRepo) ?? String()
-  private let optionsIcon = String.fontAwesomeIcon(UIFont.FontIcon.FontAwesome.options) ?? String()
+  private let starIcon = String.fontAwesomeIcon("star") ?? ""
+  private let forksRepoIcon = String.fontOcticon("repo-forked") ?? ""
 
   // MARK: - Properties
   @IBOutlet weak var containerView: UIView!
@@ -27,22 +26,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var starsLabel: UILabel!
   @IBOutlet weak var forksLabel: UILabel!
-  @IBOutlet weak var optionsButton: UIButton!
-
-  var viewModel: HomeViewModel? {
-    didSet {
-      guard let item = viewModel?.currentItem else { return }
-
-      nameLabel.text = item.name
-      authorNameLabel.text = item.author.name
-      descriptionLabel.text = item.description
-
-      setStarLabel(with: item.stars)
-      setForksLabel(with: item.forks)
-
-      authorPhotoImageView.setImage(URL(string: item.author.avatar))
-    }
-  }
 
   static var height: CGFloat {
     return 160
@@ -54,9 +37,20 @@ class HomeCollectionViewCell: UICollectionViewCell {
     updateUI()
   }
 
+  // MARK: - Public Methods
+  func configure(_ repository: HomeModel.Repository) {
+    nameLabel.text = repository.name
+    authorNameLabel.text = repository.author.name
+    descriptionLabel.text = repository.description
+
+    setStarLabel(with: repository.stars)
+    setForksLabel(with: repository.forks)
+
+    authorPhotoImageView.setImage(URL(string: repository.author.avatar))
+  }
+
   // MARK: - Private Methods
   private func setStarLabel(with stars: Int) {
-
     let iconAttributes = [NSAttributedString.Key.font: UIFont.icon(from: .fontAwesome, ofSize: iconFontSize)]
     let attributedText = NSMutableAttributedString(string: "\(starIcon)", attributes: iconAttributes)
 
@@ -70,8 +64,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
   }
 
   private func setForksLabel(with forks: Int) {
-
-    let iconAttributes = [NSAttributedString.Key.font: UIFont.icon(from: .ionicon, ofSize: iconFontSize)]
+    let iconAttributes = [NSAttributedString.Key.font: UIFont.icon(from: .octicon, ofSize: iconFontSize)]
     let attributedText = NSMutableAttributedString(string: "\(forksRepoIcon)", attributes: iconAttributes)
 
     let rightText = !forksRepoIcon.isEmpty ? ": \(forks)" : "\(forks)"
@@ -84,7 +77,12 @@ class HomeCollectionViewCell: UICollectionViewCell {
   }
 
   private func updateUI() {
-    optionsButton.titleLabel?.font = UIFont.icon(from: .fontAwesome, ofSize: iconFontSize)
-    optionsButton.setTitle(optionsIcon, for: .normal)
+    containerView.addShadow(
+      rounded: true,
+      roundedValue: 7,
+      fillColor: #colorLiteral(red: 0.1882352941, green: 0.1921568627, blue: 0.2039215686, alpha: 1),
+      shadowOffset: .zero,
+      shadowOpacity: 0.3
+    )
   }
 }

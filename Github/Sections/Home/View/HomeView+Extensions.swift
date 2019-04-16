@@ -9,23 +9,24 @@
 import UIKit
 
 // MARK: - UICollectionViewDataSource and UICollectionViewDelegate
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return homeViewModel.model.items.count
+    return homeViewModel.currentCount
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     return collectionView.dequeueReusableCell(of: HomeCollectionViewCell.self, for: indexPath) { cell in
-      guard !self.homeViewModel.model.items.isEmpty else { return }
-      self.homeViewModel.currentItem = self.homeViewModel.model.items[indexPath.item]
-      cell.viewModel = self.homeViewModel
+      if !self.isLoadingCell(for: indexPath) {
+        cell.configure(self.homeViewModel.repository(at: indexPath.item))
+      }
     }
   }
-  
-  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    guard !homeViewModel.model.items.isEmpty else { return }
-    let lastIndex = homeViewModel.model.items.count - 1
-    if indexPath.item == lastIndex {
+}
+
+// MARK: - UICollectionViewDataSourcePrefetching
+extension HomeViewController: UICollectionViewDataSourcePrefetching {
+  func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+    if indexPaths.contains(where: isLoadingCell) {
       homeViewModel.fetchData()
     }
   }

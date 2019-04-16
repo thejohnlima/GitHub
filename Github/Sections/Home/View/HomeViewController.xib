@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Github" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicatorView" destination="ef0-3l-h7Q" id="tge-E4-Koh"/>
+                <outlet property="backView" destination="kM1-ts-mNR" id="c2U-K6-qaS"/>
                 <outlet property="collectionView" destination="Z7O-XI-xTK" id="TWU-LY-8MG"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Hva-bZ-KJ2"/>
             </connections>
@@ -35,8 +36,13 @@
                     <connections>
                         <outlet property="dataSource" destination="-1" id="YiF-RI-9BI"/>
                         <outlet property="delegate" destination="-1" id="ZLi-Iy-Lvr"/>
+                        <outlet property="prefetchDataSource" destination="-1" id="56Q-fa-B4z"/>
                     </connections>
                 </collectionView>
+                <view hidden="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kM1-ts-mNR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ef0-3l-h7Q" userLabel="ActivityIndicatorView">
                     <rect key="frame" x="169" y="288.66666666666669" width="37" height="37"/>
                     <color key="color" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -44,10 +50,14 @@
             </subviews>
             <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="0.96985035210000003" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="kM1-ts-mNR" secondAttribute="trailing" id="7pZ-O3-9iH"/>
                 <constraint firstAttribute="top" secondItem="Z7O-XI-xTK" secondAttribute="top" id="8II-UG-K6F"/>
+                <constraint firstItem="kM1-ts-mNR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="At2-kX-N8r"/>
                 <constraint firstAttribute="trailing" secondItem="Z7O-XI-xTK" secondAttribute="trailing" id="B2y-nk-lNb"/>
                 <constraint firstItem="ef0-3l-h7Q" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" priority="250" constant="-104" id="LuA-iV-Cau"/>
+                <constraint firstAttribute="bottom" secondItem="kM1-ts-mNR" secondAttribute="bottom" id="Nk0-Bk-U1O"/>
                 <constraint firstItem="ef0-3l-h7Q" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Rgk-Iz-Sas"/>
+                <constraint firstItem="kM1-ts-mNR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fCc-vb-ii1"/>
                 <constraint firstItem="Z7O-XI-xTK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jWz-BO-NJT"/>
                 <constraint firstAttribute="bottom" secondItem="Z7O-XI-xTK" secondAttribute="bottom" id="zoU-qr-kWP"/>
             </constraints>

@@ -28,9 +28,7 @@
 		82E0837D22640290007E5E9C /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0837C22640290007E5E9C /* ColumnFlowLayout.swift */; };
 		82E0837F226406BD007E5E9C /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0837E226406BD007E5E9C /* UICollectionView+Extensions.swift */; };
 		82E08381226406F3007E5E9C /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E08380226406F3007E5E9C /* UIView+Extensions.swift */; };
-		82E0838322640743007E5E9C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0838222640743007E5E9C /* ShadowView.swift */; };
 		82E083862264080F007E5E9C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E083852264080F007E5E9C /* HomeCollectionViewCell.swift */; };
-		82E0838822640909007E5E9C /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0838722640909007E5E9C /* UIFont+Extensions.swift */; };
 		82E0838A226409AE007E5E9C /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E08389226409AE007E5E9C /* HomeCollectionViewCell.xib */; };
 		82E0838C22640E3C007E5E9C /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0838B22640E3C007E5E9C /* UIImageView+Extensions.swift */; };
 		82E0839122649FA1007E5E9C /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0839022649FA1007E5E9C /* AlertManager.swift */; };
@@ -78,9 +76,7 @@
 		82E0837C22640290007E5E9C /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		82E0837E226406BD007E5E9C /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		82E08380226406F3007E5E9C /* UIView+Extensions.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; tabWidth = 2; };
-		82E0838222640743007E5E9C /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		82E083852264080F007E5E9C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
-		82E0838722640909007E5E9C /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		82E08389226409AE007E5E9C /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		82E0838B22640E3C007E5E9C /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		82E0839022649FA1007E5E9C /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
@@ -246,7 +242,6 @@
 			children = (
 				829B87BE2263BA41004F12F5 /* Data+Extensions.swift */,
 				82E0837E226406BD007E5E9C /* UICollectionView+Extensions.swift */,
-				82E0838722640909007E5E9C /* UIFont+Extensions.swift */,
 				82E0838B22640E3C007E5E9C /* UIImageView+Extensions.swift */,
 				82E08380226406F3007E5E9C /* UIView+Extensions.swift */,
 			);
@@ -277,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				82E0837C22640290007E5E9C /* ColumnFlowLayout.swift */,
-				82E0838222640743007E5E9C /* ShadowView.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -555,9 +549,7 @@
 				82945DC62263DFAF000889C1 /* HomeViewModel.swift in Sources */,
 				8296CF0D2263B06B0067C0FE /* HomeModel.swift in Sources */,
 				82E0837D22640290007E5E9C /* ColumnFlowLayout.swift in Sources */,
-				82E0838322640743007E5E9C /* ShadowView.swift in Sources */,
 				82D9ADA12263D09100AA22E3 /* HomeAPI.swift in Sources */,
-				82E0838822640909007E5E9C /* UIFont+Extensions.swift in Sources */,
 				82916AF922639A8C009D26D9 /* AppDelegate.swift in Sources */,
 				82E0838C22640E3C007E5E9C /* UIImageView+Extensions.swift in Sources */,
 			);
