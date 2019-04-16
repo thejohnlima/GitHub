@@ -49,3 +49,7 @@ bundle exec fastlane build
 ```
 
 This will run all tests and will generate some reports about `lint`, `coverage` and `tests`.
+
+## Task Management
+
+I like using [Trello](https://trello.com/b/S1WKcAj6) for task management.
