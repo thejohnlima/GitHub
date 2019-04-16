@@ -2,7 +2,8 @@ language: swift
 osx_image: xcode10.2
 before_install:
 - set -o pipefail
-- xcrun simctl boot "iPhone XS" || echo "(Pre)Launched the simulator."
+- xcrun simctl boot "iPhone 8" || echo "(Pre)Launched the simulator."
 - pod repo update
 script:
-- pod install
+- bundle install
+- bundle exec fastlane build

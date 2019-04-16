@@ -1,16 +1,36 @@
 PODS:
+  - BaseNetworkKit (1.0.4)
+  - Nimble (8.0.1)
+  - ObservableKit (1.0.1)
+  - Quick (2.0.0)
+  - SwiftIconFont (3.0.0)
   - SwiftLint (0.31.0)
 
 DEPENDENCIES:
+  - BaseNetworkKit (~> 1.0)
+  - Nimble (~> 8.0)
+  - ObservableKit (~> 1.0)
+  - Quick (~> 2.0)
+  - SwiftIconFont (~> 3.0)
   - SwiftLint (~> 0.31)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BaseNetworkKit
+    - Nimble
+    - ObservableKit
+    - Quick
+    - SwiftIconFont
     - SwiftLint
 
 SPEC CHECKSUMS:
+  BaseNetworkKit: f0d0795474c0c6ee4357e4d7f0e88ff69068a0a8
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  ObservableKit: f5f914904a359cbe56afa80ea411b45d5786058f
+  Quick: ce1276c7c27ba2da3cb2fd0cde053c3648b3b22d
+  SwiftIconFont: 2ba18554a77c44948dc35b561b344e3c23834a84
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: ce49871401c14f98a7a089ed3d36a867c74427f4
+PODFILE CHECKSUM: c99b466b96c7671a315e4f0cf83af11ad62217d8
 
 COCOAPODS: 1.6.1
